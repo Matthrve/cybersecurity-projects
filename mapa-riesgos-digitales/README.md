@@ -28,7 +28,7 @@ de Flask** (`server.py`): tiene una interfaz propia con transiciones y
 gráficos animados que Streamlit no puede ofrecer (cada interacción en
 Streamlit recarga toda la página; acá no).
 
-Opcional — recordatorio semanal para reevaluarte (crea una tarea en el
+Recordatorio semanal para reevaluarte (crea una tarea en el
 Programador de tareas de Windows; no se instala solo):
 
 ```bash
@@ -177,16 +177,6 @@ tienen un aspecto genérico difícil de "romper" con CSS. `server.py` +
   en segundo plano (Chrome pausa `requestAnimationFrame` ahí) — el código
   usa técnicas CSS estándar, pero vale la pena que confirmes visualmente
   que las transiciones se ven bien en tu navegador real.
-- Bug real encontrado y corregido durante las pruebas: al agregar la
-  categoría "Dispositivo" nunca se había actualizado el esquema de
-  `historial.py`, así que ese puntaje se perdía silenciosamente al
-  guardar el historial.
-- Otro bug real, reportado por el usuario y confirmado programáticamente
-  (pidiéndole al navegador qué elemento hay exactamente en cada punto de
-  la pantalla): los interruptores (`.toggle`) tenían un `<span>`
-  decorativo dibujado encima del `<input>` real, así que ningún clic
-  llegaba al checkbox. Se corrigió con `pointer-events: none` en las
-  capas decorativas.
 - Reporte Word verificado reabriendo el `.docx` generado con
   `python-docx` y comprobando el contenido real (tablas, puntajes, plan
   de acción), no solo que la descarga "no fallara".
