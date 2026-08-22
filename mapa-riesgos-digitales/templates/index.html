@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa de Riesgos Digitales</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<!-- ============================== ICONOS (sprite) ============================== -->
+<svg style="display:none">
+  <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 8-7 9-4-1-7-4.5-7-9V6l7-3z"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><polyline points="21 3 21 8 16 8"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/><polyline points="3 21 3 16 8 16"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8.5a16 16 0 0 1 20 0"/><path d="M5 12a11 11 0 0 1 14 0"/><path d="M8.5 15.5a6 6 0 0 1 7 0"/><circle cx="12" cy="19" r="1" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-archive" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="4" rx="1"/><path d="M4 8v10a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8"/><path d="M10 13h4"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="5" width="16" height="10" rx="1"/><path d="M2 19h20"/></symbol>
+  <symbol id="i-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="4" width="12" height="17" rx="2"/><path d="M9 4V3a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v1"/><path d="M9 10h6"/><path d="M9 14h6"/><path d="M9 18h3"/></symbol>
+  <symbol id="i-activity" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><polyline points="3 17 9 11 13 15 21 6"/><polyline points="15 6 21 6 21 12"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4.5A2.5 2.5 0 0 1 6.5 2H20v17H6.5A2.5 2.5 0 0 0 4 21.5v-17Z"/><path d="M4 19a2.5 2.5 0 0 1 2.5-2.5H20"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><polyline points="7 11 12 16 17 11"/><path d="M5 21h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M6 7l1 13a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1l1-13"/><path d="M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l10 18H2L12 3z"/><path d="M12 9.5v4"/><circle cx="12" cy="16.7" r="0.9" fill="currentColor" stroke="none"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12.3l2.6 2.6L16 9.3"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M5 21V4"/><path d="M5 4h13l-3 4.5L18 13H5"/></symbol>
+</svg>
+
+<!-- ============================== HEADER ============================== -->
+<div class="case-bar">
+  <div class="case-bar-inner">
+    <div class="brand">
+      <svg><use href="#i-shield"/></svg>
+      <div class="brand-text">Mapa de Riesgos Digitales<span class="sub">Expediente de seguridad personal</span></div>
+    </div>
+    <div class="case-status" id="case-status">
+      <span class="dot"></span>
+      <span id="case-status-text">Sin evaluar todavía</span>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div class="intro">
+    <div class="eyebrow">Reglas explicables + IA ligera</div>
+    <h1>Tu expediente de riesgo digital</h1>
+    <p>Respondé el cuestionario de hábitos —contraseñas, actualizaciones, dispositivo, redes y respaldo— y obtené un puntaje por categoría, un veredicto del modelo de Machine Learning, y un plan de acción priorizado por impacto real.</p>
+  </div>
+
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="info"><svg><use href="#i-book"/></svg>Cómo funciona</button>
+    <button class="tab-btn" data-tab="evaluar"><svg><use href="#i-clipboard"/></svg>Evaluar</button>
+    <button class="tab-btn" data-tab="historial"><svg><use href="#i-activity"/></svg>Historial</button>
+  </nav>
+
+  <!-- ============================== PANEL: EVALUAR ============================== -->
+  <section class="panel" id="panel-evaluar">
+
+    <div class="diag-box">
+      <div class="diag-head">
+        <div class="diag-title"><svg><use href="#i-search"/></svg>Diagnóstico automático del sistema</div>
+        <button class="btn btn-ghost" id="btn-diagnostico" type="button"><svg><use href="#i-search"/></svg>Detectar ahora</button>
+      </div>
+      <p>Lee en tu propio equipo (solo Windows) el estado real de actualizaciones, firewall, antivirus, bloqueo de pantalla, cifrado de disco y acceso remoto — de solo lectura, no modifica nada, y el resultado no sale de esta sesión. Sirve para prellenar el formulario y marcar diferencias con lo que respondas.</p>
+      <div class="diag-results" id="diag-results" style="display:none"></div>
+    </div>
+
+    <form id="cuestionario">
+
+      <div class="section-label">01 · Contraseñas</div>
+      <div class="entry">
+        <div class="entry-head"><svg><use href="#i-lock"/></svg>Contraseñas</div>
+        <div class="entry-hint">Cómo creás, guardás y renovás tus contraseñas.</div>
+
+        <div class="field">
+          <label class="field-text" for="f-reutiliza">Reutilizo la misma contraseña en varios servicios</label>
+          <span class="toggle"><input type="checkbox" id="f-reutiliza" data-field="reutiliza_contraseñas"><span class="track"></span><span class="thumb"></span></span>
+        </div>
+        <div class="field-slider">
+          <div class="slider-row"><span>Longitud promedio de mis contraseñas</span><span class="slider-value" id="v-longitud">10</span></div>
+          <input type="range" id="f-longitud" data-field="longitud_promedio" min="4" max="24" value="10">
+          <div class="field-hint">Recomendado: 14+ caracteres</div>
+        </div>
+        <div class="field">
+          <label class="field-text" for="f-gestor">Uso un gestor de contraseñas</label>
+          <span class="toggle"><input type="checkbox" id="f-gestor" data-field="usa_gestor" checked><span class="track"></span><span class="thumb"></span></span>
+        </div>
+        <div class="field">
+          <label class="field-text" for="f-2fa">Tengo activado el 2FA en mis cuentas principales</label>
+          <span class="toggle"><input type="checkbox" id="f-2fa" data-field="usa_2fa" checked><span class="track"></span><span class="thumb"></span></span>
+        </div>
+        <div class="field">
+          <label class="field-text" for="f-filtracion">Cambio mi contraseña si me entero de una filtración</label>
+          <span class="toggle"><input type="checkbox" id="f-filtracion" data-field="cambia_password_tras_filtracion" checked><span class="track"></span><span class="thumb"></span></span>
+        </div>
+      </div>
+
+      <div class="section-label">02 · Actualizaciones</div>
+      <div class="entry">
+        <div class="entry-head"><svg><use href="#i-refresh"/></svg>Actualizaciones</div>
+        <div class="entry-hint">Qué tan al día tenés el sistema y las aplicaciones.</div>
+
+        <div class="field">
+          <label class="field-text" for="f-auto-updates">Tengo activadas las actualizaciones automáticas del SO</label>
+          <span class="toggle"><input type="checkbox" id="f-auto-updates" data-field="actualizaciones_automaticas" checked><span class="track"></span><span class="thumb"></span></span>
+        </div>
+        <div class="field-slider">
+          <div class="slider-row"><span>Días desde mi última actualización de sistema</span><span class="slider-value" id="v-dias">15</span></div>
+          <input type="range" id="f-dias" data-field="dias_desde_actualizacion" min="0" max="365" value="15">
+          <div class="field-hint" id="hint-dias">Recomendado: menos de 30 días</div>
+        </div>
+        <div class="field">
+          <label class="field-text" for="f-apps">Actualizo mis apps con regularidad</label>
+          <span class="toggle"><input type="checkbox" id="f-apps" data-field="actualiza_apps" checked><span class="track"></span><span class="thumb"></span></span>
+        </div>
+      </div>
+
+      <div class="section-label">03 · Dispositivo</div>
+      <div class="entry">
+        <div class="entry-head"><svg><use href="#i-laptop"/></svg>Dispositivo</div>
+        <div class="entry-hint">Riesgo si alguien tiene acceso físico al equipo (robo, pérdida, descuido).</div>
+
+        <div class="field">
+          <label class="field-text" for="f-bloqueo">Mi pantalla se bloquea sola (con contraseña o PIN) tras un rato de inactividad</label>
+          <span class="toggle"><input type="checkbox" id="f-bloqueo" data-field="bloqueo_automatico" checked><span class="track"></span><span class="thumb"></span></span>
+        </div>
+        <div class="field">
+          <label class="field-text" for="f-cifrado">El disco de este equipo está cifrado (BitLocker / Cifrado de dispositivo)</label>
+          <span class="toggle"><input type="checkbox" id="f-cifrado" data-field="disco_cifrado"><span class="track"></span><span class="thumb"></span></span>
+        </div>
+        <div class="field">
+          <label class="field-text" for="f-rdp">Tengo el Escritorio remoto (RDP) u otro acceso remoto habilitado</label>
+          <span class="toggle"><input type="checkbox" id="f-rdp" data-field="acceso_remoto_habilitado"><span class="track"></span><span class="thumb"></span></span>
+        </div>
+      </div>
+
+      <div class="section-label">04 · Redes</div>
+      <div class="entry">
+        <div class="entry-head"><svg><use href="#i-wifi"/></svg>Redes</div>
+        <div class="entry-hint">Cómo te conectás y qué tan alerta estás ante enlaces sospechosos.</div>
+
+        <div class="field">
+          <label class="field-text" for="f-wifi">Me conecto a wifi público sin usar VPN</label>
+          <span class="toggle"><input type="checkbox" id="f-wifi" data-field="usa_wifi_publico_sin_vpn"><span class="track"></span><span class="thumb"></span></span>
+        </div>
+        <div class="field">
+          <label class="field-text" for="f-vpn">Uso VPN habitualmente</label>
+          <span class="toggle"><input type="checkbox" id="f-vpn" data-field="usa_vpn"><span class="track"></span><span class="thumb"></span></span>
+        </div>
+        <div class="field">
+          <label class="field-text" for="f-clic">Hago clic en enlaces/adjuntos de origen desconocido</label>
+          <span class="toggle"><input type="checkbox" id="f-clic" data-field="hace_clic_enlaces_desconocidos"><span class="track"></span><span class="thumb"></span></span>
+        </div>
+        <div class="field">
+          <label class="field-text" for="f-comparte">Comparto dispositivos o red sin controles (perfiles, etc.)</label>
+          <span class="toggle"><input type="checkbox" id="f-comparte" data-field="comparte_red_o_dispositivos"><span class="track"></span><span class="thumb"></span></span>
+        </div>
+      </div>
+
+      <div class="section-label">05 · Respaldo</div>
+      <div class="entry">
+        <div class="entry-head"><svg><use href="#i-archive"/></svg>Respaldo</div>
+        <div class="entry-hint">Qué pasa con tu información si el equipo falla o se pierde.</div>
+
+        <div class="field">
+          <label class="field-text" for="f-backups">Hago copias de seguridad con regularidad</label>
+          <span class="toggle"><input type="checkbox" id="f-backups" data-field="hace_backups_regulares" checked><span class="track"></span><span class="thumb"></span></span>
+        </div>
+        <div class="field">
+          <label class="field-text" for="f-backups-nube">Tengo copias de seguridad automáticas en la nube</label>
+          <span class="toggle"><input type="checkbox" id="f-backups-nube" data-field="backups_automaticos_en_nube" checked><span class="track"></span><span class="thumb"></span></span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" type="submit" id="btn-evaluar">
+        <svg><use href="#i-shield"/></svg>Generar mi mapa de riesgo
+      </button>
+    </form>
+
+    <div id="resultados" style="display:none; margin-top: 2.4rem;"></div>
+
+  </section>
+
+  <!-- ============================== PANEL: HISTORIAL ============================== -->
+  <section class="panel" id="panel-historial">
+    <div id="historial-contenido">
+      <div class="empty-state"><svg><use href="#i-activity"/></svg><p>Cargando historial…</p></div>
+    </div>
+  </section>
+
+  <!-- ============================== PANEL: CÓMO FUNCIONA ============================== -->
+  <section class="panel active" id="panel-info">
+    <div class="entry">
+      <div class="howitworks-item">
+        <svg><use href="#i-clipboard"/></svg>
+        <div><h4>Motor de reglas</h4><p>Cada respuesta se compara contra buenas prácticas de seguridad conocidas y genera un puntaje por categoría (0-100) más alertas explicables, cada una con su recomendación.</p></div>
+      </div>
+      <div class="howitworks-item">
+        <svg><use href="#i-activity"/></svg>
+        <div><h4>Modelo de Machine Learning</h4><p>Un RandomForest ligero, entrenado con perfiles simulados, clasifica el riesgo global (Bajo/Medio/Alto) a partir de la combinación completa de tus respuestas — capturando patrones que una fórmula simple no siempre detecta.</p></div>
+      </div>
+      <div class="howitworks-item">
+        <svg><use href="#i-flag"/></svg>
+        <div><h4>Plan de acción</h4><p>Cada alerta se simula individualmente (¿cuánto bajaría tu puntaje si la resolvieras?) y se ordena por impacto frente a esfuerzo, para mostrarte primero los cambios de mayor retorno.</p></div>
+      </div>
+      <div class="howitworks-item">
+        <svg><use href="#i-archive"/></svg>
+        <div><h4>Historial local</h4><p>Cada evaluación se guarda en <code>data/historial.db</code> (SQLite, en tu propio equipo) para ver la tendencia de tu riesgo en el tiempo. Nunca se envía a servidores externos.</p></div>
+      </div>
+      <div class="howitworks-item">
+        <svg><use href="#i-download"/></svg>
+        <div><h4>Reporte descargable</h4><p>Después de evaluar, podés descargar un documento Word (.docx) con formato profesional: resumen, puntaje por categoría y plan de acción — listo para guardar o compartir.</p></div>
+      </div>
+      <div class="howitworks-item">
+        <svg><use href="#i-search"/></svg>
+        <div><h4>Diagnóstico del sistema (Windows)</h4><p>Un script de PowerShell de solo lectura contrasta tus respuestas contra el estado real de actualizaciones, firewall, antivirus, bloqueo de pantalla, cifrado de disco y acceso remoto.</p></div>
+      </div>
+      <div class="howitworks-item">
+        <svg><use href="#i-alert"/></svg>
+        <div><h4>Recordatorios proactivos (opcional)</h4><p><code>scripts/instalar_recordatorio.ps1</code> registra una tarea semanal en el Programador de tareas de Windows que te avisa si pasó mucho tiempo desde tu última evaluación. No se instala solo — lo corrés vos cuando quieras activarlo.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="page-footer">
+    Modelo entrenado con dataset 100% sintético · Tu historial se guarda solo en este equipo · Nada se envía a servidores externos
+  </footer>
+
+</div>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
