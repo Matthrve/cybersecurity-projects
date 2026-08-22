@@ -13,6 +13,7 @@ Ejecutar:
 
 from __future__ import annotations
 
+import os
 import sys
 from datetime import datetime
 from pathlib import Path
@@ -170,4 +171,5 @@ def api_reporte():
 
 if __name__ == "__main__":
     inicializar_db()
-    app.run(debug=True, port=5000)
+    debug = os.environ.get("FLASK_DEBUG") == "1"
+    app.run(debug=debug, port=5000)
