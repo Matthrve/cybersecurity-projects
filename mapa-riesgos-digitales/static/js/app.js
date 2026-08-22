@@ -15,6 +15,15 @@ const ETIQUETA_ESFUERZO = { bajo: "esfuerzo bajo", medio: "esfuerzo medio", alto
 let ultimoResultado = null;
 let senalesSistema = null;
 
+// Escapa texto antes de insertarlo como HTML (defensa en profundidad: hoy
+// ningún mensaje de error refleja input de otro usuario, pero por si algún
+// día un mensaje de servidor incluyera datos menos controlados).
+function escapeHtml(texto) {
+  const div = document.createElement("div");
+  div.textContent = String(texto);
+  return div.innerHTML;
+}
+
 /* ------------------------------------------------------------------ */
 /* Tabs                                                                  */
 /* ------------------------------------------------------------------ */
@@ -69,7 +78,7 @@ function renderDiagnostico(datos) {
 
   if (!datos.ok) {
     box.className = "";
-    box.innerHTML = `<div class="notice notice-warn" style="grid-column:1/-1">${datos.error || "No se pudo completar el diagnóstico."}</div>`;
+    box.innerHTML = `<div class="notice notice-warn" style="grid-column:1/-1">${escapeHtml(datos.error || "No se pudo completar el diagnóstico.")}</div>`;
     return;
   }
 
@@ -151,7 +160,7 @@ document.getElementById("cuestionario").addEventListener("submit", async (e) => 
   } catch (err) {
     const cont = document.getElementById("resultados");
     cont.style.display = "block";
-    cont.innerHTML = `<div class="notice notice-warn">No se pudo calcular el resultado: ${err.message}</div>`;
+    cont.innerHTML = `<div class="notice notice-warn">No se pudo calcular el resultado: ${escapeHtml(err.message)}</div>`;
   } finally {
     btn.disabled = false;
     btn.innerHTML = original;
