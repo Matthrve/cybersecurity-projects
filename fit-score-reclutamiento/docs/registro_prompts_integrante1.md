@@ -6,6 +6,3 @@
 
 > Registro completo y detallado en `docs/informe_tecnico.docx`, sección 2.2 — este archivo se
 > conserva como respaldo en texto plano.
-
-> Completa una fila por cada sesión relevante donde usaste una IA como copiloto (ideación,
-> implementación, debugging).
