@@ -1,0 +1,18 @@
+María F. López
+Analista de Seguridad de la Información
+
+Resumen: profesional con 4 años de experiencia en operaciones de seguridad, gestión de
+vulnerabilidades y respuesta a incidentes en entornos corporativos.
+
+Experiencia:
+SecureNet (2022 - presente): Monitoreo de alertas en SIEM (Splunk), análisis de logs de red
+y coordinación de respuesta a incidentes. Ejecución de escaneos periódicos de vulnerabilidades
+con Nessus y seguimiento de remediación junto a equipos de infraestructura.
+
+DataWorks (2020 - 2022): Administración de redes y soporte en la implementación de controles
+alineados a ISO 27001. Apoyo en pruebas de penetración internas.
+
+Educación: Ingeniería en Sistemas - Escuela Politécnica Nacional.
+
+Habilidades: redes, SIEM, gestión de vulnerabilidades, respuesta a incidentes, ISO 27001,
+Linux, comunicación efectiva, trabajo en equipo.

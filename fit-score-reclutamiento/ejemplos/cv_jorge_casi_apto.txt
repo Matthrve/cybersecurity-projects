@@ -1,0 +1,15 @@
+Jorge Salazar
+Técnico de soporte de infraestructura
+
+Resumen: 2 años de experiencia en soporte de redes y sistemas, con interés en pasar a
+ciberseguridad.
+
+Experiencia:
+Innovatech (2024 - presente): administración básica de redes, configuración de switches y
+soporte de primer nivel. Apoyo puntual en tareas de gestión de vulnerabilidades bajo supervisión
+de un analista senior. Documentación de incidentes reportados por usuarios.
+
+Educación: Tecnólogo en Redes y Telecomunicaciones.
+
+Habilidades: redes, gestión de vulnerabilidades (nivel básico), Linux, resolución de problemas,
+trabajo en equipo.

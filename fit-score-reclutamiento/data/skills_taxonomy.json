@@ -1,0 +1,109 @@
+{
+  "skills": {
+    "python": {"category": "lenguaje", "aliases": ["python", "python3", "py"]},
+    "java": {"category": "lenguaje", "aliases": ["java", "java se", "java ee"]},
+    "javascript": {"category": "lenguaje", "aliases": ["javascript", "js", "ecmascript"]},
+    "typescript": {"category": "lenguaje", "aliases": ["typescript", "ts"]},
+    "sql": {"category": "lenguaje", "aliases": ["sql", "consultas sql", "t-sql", "pl/sql"]},
+    "c#": {"category": "lenguaje", "aliases": ["c#", "csharp", "c sharp"]},
+    "go": {"category": "lenguaje", "aliases": ["go", "golang"]},
+    "bash": {"category": "lenguaje", "aliases": ["bash", "shell scripting", "shell"]},
+    "react": {"category": "frontend", "aliases": ["react", "react.js", "reactjs"]},
+    "angular": {"category": "frontend", "aliases": ["angular", "angularjs"]},
+    "vue": {"category": "frontend", "aliases": ["vue", "vue.js", "vuejs"]},
+    "html_css": {"category": "frontend", "aliases": ["html", "css", "html5", "css3"]},
+    "nodejs": {"category": "backend", "aliases": ["node", "node.js", "nodejs"]},
+    "django": {"category": "backend", "aliases": ["django"]},
+    "flask": {"category": "backend", "aliases": ["flask"]},
+    "fastapi": {"category": "backend", "aliases": ["fastapi"]},
+    "spring": {"category": "backend", "aliases": ["spring", "spring boot"]},
+    "rest_apis": {"category": "backend", "aliases": ["rest", "api rest", "restful", "apis rest"]},
+    "microservicios": {"category": "backend", "aliases": ["microservicios", "microservices"]},
+    "pandas": {"category": "data", "aliases": ["pandas"]},
+    "numpy": {"category": "data", "aliases": ["numpy"]},
+    "scikit-learn": {"category": "data", "aliases": ["scikit-learn", "sklearn"]},
+    "machine_learning": {"category": "data", "aliases": ["machine learning", "aprendizaje automatico", "ml"]},
+    "deep_learning": {"category": "data", "aliases": ["deep learning", "aprendizaje profundo", "redes neuronales"]},
+    "nlp": {"category": "data", "aliases": ["nlp", "procesamiento de lenguaje natural", "natural language processing"]},
+    "power_bi": {"category": "data", "aliases": ["power bi", "powerbi"]},
+    "tableau": {"category": "data", "aliases": ["tableau"]},
+    "etl": {"category": "data", "aliases": ["etl", "pipelines de datos", "data pipelines"]},
+    "spark": {"category": "data", "aliases": ["spark", "apache spark", "pyspark"]},
+    "aws": {"category": "cloud", "aliases": ["aws", "amazon web services"]},
+    "azure": {"category": "cloud", "aliases": ["azure", "microsoft azure"]},
+    "gcp": {"category": "cloud", "aliases": ["gcp", "google cloud", "google cloud platform"]},
+    "docker": {"category": "devops", "aliases": ["docker", "contenedores"]},
+    "kubernetes": {"category": "devops", "aliases": ["kubernetes", "k8s"]},
+    "ci_cd": {"category": "devops", "aliases": ["ci/cd", "integracion continua", "despliegue continuo", "jenkins", "github actions"]},
+    "terraform": {"category": "devops", "aliases": ["terraform", "infraestructura como codigo", "iac"]},
+    "linux": {"category": "sistemas", "aliases": ["linux", "administracion linux"]},
+    "redes": {"category": "sistemas", "aliases": ["redes", "networking", "tcp/ip"]},
+    "pentesting": {"category": "ciberseguridad", "aliases": ["pentesting", "pruebas de penetracion", "hacking etico", "ethical hacking"]},
+    "analisis_malware": {"category": "ciberseguridad", "aliases": ["analisis de malware", "malware analysis", "ingenieria inversa"]},
+    "siem": {"category": "ciberseguridad", "aliases": ["siem", "splunk", "qradar"]},
+    "respuesta_incidentes": {"category": "ciberseguridad", "aliases": ["respuesta a incidentes", "incident response", "forense digital", "dfir"]},
+    "gestion_vulnerabilidades": {"category": "ciberseguridad", "aliases": ["gestion de vulnerabilidades", "vulnerability management", "nessus", "escaneo de vulnerabilidades"]},
+    "criptografia": {"category": "ciberseguridad", "aliases": ["criptografia", "cryptography"]},
+    "seguridad_perimetral": {"category": "ciberseguridad", "aliases": ["firewalls", "ids/ips", "seguridad perimetral"]},
+    "iso27001": {"category": "ciberseguridad", "aliases": ["iso 27001", "iso27001", "normativas de seguridad"]},
+    "owasp": {"category": "ciberseguridad", "aliases": ["owasp", "owasp top 10", "seguridad de aplicaciones web"]},
+    "git": {"category": "herramientas", "aliases": ["git", "control de versiones", "github", "gitlab"]},
+    "scrum": {"category": "metodologia", "aliases": ["scrum", "agile", "kanban", "metodologias agiles"]},
+    "comunicacion": {"category": "soft_skill", "aliases": ["comunicacion efectiva", "comunicacion"]},
+    "trabajo_en_equipo": {"category": "soft_skill", "aliases": ["trabajo en equipo", "colaboracion"]},
+    "liderazgo": {"category": "soft_skill", "aliases": ["liderazgo", "gestion de equipos"]},
+    "resolucion_problemas": {"category": "soft_skill", "aliases": ["resolucion de problemas", "pensamiento analitico"]}
+  },
+  "job_families": {
+    "desarrollador_backend": {
+      "titulo": "Desarrollador Backend",
+      "skills_obligatorias": ["python", "sql", "rest_apis", "git"],
+      "skills_deseables": ["docker", "microservicios", "aws", "ci_cd"],
+      "min_experiencia": 2,
+      "educacion_minima": "pregrado"
+    },
+    "desarrollador_frontend": {
+      "titulo": "Desarrollador Frontend",
+      "skills_obligatorias": ["javascript", "html_css", "react", "git"],
+      "skills_deseables": ["typescript", "vue", "ci_cd"],
+      "min_experiencia": 1,
+      "educacion_minima": "tecnico"
+    },
+    "analista_datos": {
+      "titulo": "Analista de Datos",
+      "skills_obligatorias": ["sql", "pandas", "power_bi"],
+      "skills_deseables": ["python", "etl", "tableau", "machine_learning"],
+      "min_experiencia": 1,
+      "educacion_minima": "pregrado"
+    },
+    "cientifico_datos": {
+      "titulo": "Científico de Datos",
+      "skills_obligatorias": ["python", "pandas", "scikit-learn", "machine_learning"],
+      "skills_deseables": ["deep_learning", "nlp", "spark", "sql"],
+      "min_experiencia": 2,
+      "educacion_minima": "posgrado"
+    },
+    "analista_ciberseguridad": {
+      "titulo": "Analista de Ciberseguridad",
+      "skills_obligatorias": ["redes", "siem", "gestion_vulnerabilidades"],
+      "skills_deseables": ["respuesta_incidentes", "iso27001", "pentesting", "linux"],
+      "min_experiencia": 2,
+      "educacion_minima": "pregrado"
+    },
+    "pentester": {
+      "titulo": "Pentester / Ethical Hacker",
+      "skills_obligatorias": ["pentesting", "owasp", "redes", "linux"],
+      "skills_deseables": ["analisis_malware", "criptografia", "seguridad_perimetral"],
+      "min_experiencia": 2,
+      "educacion_minima": "pregrado"
+    },
+    "devops_engineer": {
+      "titulo": "Ingeniero DevOps",
+      "skills_obligatorias": ["docker", "kubernetes", "ci_cd", "linux"],
+      "skills_deseables": ["terraform", "aws", "azure", "gcp"],
+      "min_experiencia": 3,
+      "educacion_minima": "pregrado"
+    }
+  },
+  "niveles_educacion": ["ninguno", "tecnico", "pregrado", "posgrado"]
+}

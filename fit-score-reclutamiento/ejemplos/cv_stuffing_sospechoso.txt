@@ -1,0 +1,3 @@
+redes SIEM Splunk gestion de vulnerabilidades Nessus respuesta a incidentes forense digital
+ISO 27001 pentesting OWASP hacking etico Linux criptografia firewalls IDS IPS analisis de
+malware ingenieria inversa python sql docker kubernetes aws azure react javascript
